@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satish Ad Agency | Complete School Solutions</title>
+    <meta name="description"
+        content="Satish Ad Agency provides school ID cards, printing, supplies, and student data management services.">
+    <link rel="canonical" href="https://con.satishadagency.in/">
+    <meta property="og:title" content="Satish Ad Agency | Complete School Solutions">
+    <meta property="og:description"
+        content="School supplies, printing, ID cards, and student data management from Satish Ad Agency.">
+    <meta property="og:url" content="https://con.satishadagency.in/">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script>
+        // Immediate Theme Check to prevent White Flash
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <ion-icon name="prism" style="color: var(--primary);"></ion-icon>
+                Satish Ad Agency
+            </a>
+            <div class="mobile-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link" style="color: var(--primary);">Home</a></li>
+                <li><a href="app.html" class="nav-link">Student Portal</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="app.html" class="btn btn-primary">Login</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()"><ion-icon
+                            name="moon-outline"></ion-icon></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="blob"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1><span class="text-gradient">Satish Ad Agency</span></h1>
+                <p>Your One-Stop Solution for School Supplies, Printing, and Data Management.</p>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn btn-primary">Contact</a>
+                    <a href="#services" class="btn btn-outline">View Catalog</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Products & Services</h2>
+                <p>We provide a comprehensive range of high-quality items for schools and institutions.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-item" data-catalog-key="id-cards">
+                    <div class="product-icon"><ion-icon name="id-card-outline"></ion-icon></div> <span
+                        class="product-name">ID Cards</span>
+                </div>
+                <div class="product-item" data-catalog-key="belts-ties">
+                    <div class="product-icon"><ion-icon name="shirt-outline"></ion-icon></div> <span
+                        class="product-name">Belts & Ties</span>
+                </div>
+                <div class="product-item" data-catalog-key="school-diaries">
+                    <div class="product-icon"><ion-icon name="journal-outline"></ion-icon></div> <span
+                        class="product-name">School Diaries</span>
+                </div>
+                <div class="product-item" data-catalog-key="progress-reports">
+                    <div class="product-icon"><ion-icon name="bar-chart-outline"></ion-icon></div> <span
+                        class="product-name">Progress Reports</span>
+                </div>
+                <div class="product-item" data-catalog-key="book-cover-pages">
+                    <div class="product-icon"><ion-icon name="book-outline"></ion-icon></div> <span
+                        class="product-name">Book Cover Pages</span>
+                </div>
+                <div class="product-item" data-catalog-key="student-files">
+                    <div class="product-icon"><ion-icon name="folder-open-outline"></ion-icon></div> <span
+                        class="product-name">Student Files</span>
+                </div>
+                <div class="product-item" data-catalog-key="student-file-folders">
+                    <div class="product-icon"><ion-icon name="file-tray-full-outline"></ion-icon></div> <span
+                        class="product-name">Student File Folders</span>
+                </div>
+                <div class="product-item" data-catalog-key="answer-sheets">
+                    <div class="product-icon"><ion-icon name="document-text-outline"></ion-icon></div> <span
+                        class="product-name">Answer Sheets</span>
+                </div>
+                <div class="product-item" data-catalog-key="note-books">
+                    <div class="product-icon"><ion-icon name="library-outline"></ion-icon></div> <span
+                        class="product-name">Note Books</span>
+                </div>
+                <div class="product-item" data-catalog-key="cloth-ribbon-badges">
+                    <div class="product-icon"><ion-icon name="ribbon-outline"></ion-icon></div> <span
+                        class="product-name">Cloth & Ribbon Badges</span>
+                </div>
+                <div class="product-item" data-catalog-key="pocket-pvc-badges">
+                    <div class="product-icon"><ion-icon name="shield-checkmark-outline"></ion-icon></div> <span
+                        class="product-name">Pocket PVC & Badges</span>
+                </div>
+                <div class="product-item" data-catalog-key="prize-medals">
+                    <div class="product-icon"><ion-icon name="medal-outline"></ion-icon></div> <span
+                        class="product-name">Prize Medals</span>
+                </div>
+                <div class="product-item" data-catalog-key="prize-shields">
+                    <div class="product-icon"><ion-icon name="trophy-outline"></ion-icon></div> <span
+                        class="product-name">Prize Shields</span>
+                </div>
+                <div class="product-item" data-catalog-key="t-shirts-tracks">
+                    <div class="product-icon"><ion-icon name="shirt-outline"></ion-icon></div> <span
+                        class="product-name">T-Shirts / Tracks</span>
+                </div>
+                <div class="product-item" data-catalog-key="school-socks">
+                    <div class="product-icon"><ion-icon name="footsteps-outline"></ion-icon></div> <span
+                        class="product-name">School Socks</span>
+                </div>
+                <div class="product-item" data-catalog-key="school-shoes">
+                    <div class="product-icon"><ion-icon name="walk-outline"></ion-icon></div> <span
+                        class="product-name">School Shoes</span>
+                </div>
+                <div class="product-item" data-catalog-key="caps">
+                    <div class="product-icon"><ion-icon name="happy-outline"></ion-icon></div> <span
+                        class="product-name">Caps</span>
+                </div>
+                <div class="product-item" data-catalog-key="brochures-posters">
+                    <div class="product-icon"><ion-icon name="newspaper-outline"></ion-icon></div> <span
+                        class="product-name">Brochures & Posters</span>
+                </div>
+                <div class="product-item" data-catalog-key="display-boards">
+                    <div class="product-icon"><ion-icon name="easel-outline"></ion-icon></div> <span
+                        class="product-name">Display Boards</span>
+                </div>
+                <div class="product-item" data-catalog-key="non-woven-bags">
+                    <div class="product-icon"><ion-icon name="bag-handle-outline"></ion-icon></div> <span
+                        class="product-name">Non-woven Bags</span>
+                </div>
+                <div class="product-item" data-catalog-key="school-bags">
+                    <div class="product-icon"><ion-icon name="bag-outline"></ion-icon></div> <span
+                        class="product-name">School Bags</span>
+                </div>
+                <div class="product-item" data-catalog-key="and-more">
+                    <div class="product-icon"><ion-icon name="add-circle-outline"></ion-icon></div> <span
+                        class="product-name">And More...</span>
+                </div>
+            </div>
+
+            <!-- Digital Service Highlight -->
+            <div class="digital-highlight glass-frame">
+                <div style="flex: 1;">
+                    <div class="icon-box" style="margin-bottom: 1rem;">
+                        <ion-icon name="server-outline"></ion-icon>
+                    </div>
+                    <h2>Digital Student Data Portal</h2>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">A specialized service for our clients.
+                        Satish Ad Agency manages your entire student database digitally. Upload data, generate ID cards,
+                        and correct records seamlessly.</p>
+                    <a href="app.html" class="btn btn-primary">Login to Portal <ion-icon name="arrow-forward-outline"
+                            style="margin-left: 0.5rem"></ion-icon></a>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <ion-icon name="laptop-outline"
+                        style="font-size: 10rem; color: var(--primary); opacity: 0.2;"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Works Modal -->
+    <div class="works-modal" id="worksModal">
+        <div class="works-modal-content glass-frame">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 id="works-title">Product Works</h2>
+                <button onclick="closeWorksModal()" class="btn-close"><ion-icon
+                        name="close-outline"></ion-icon></button>
+            </div>
+            <div id="works-gallery" class="works-gallery">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 Satish Ad Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-toggle ion-icon');
+
+            if (body.classList.contains('dark')) {
+                icon.setAttribute('name', 'sunny-outline');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.setAttribute('name', 'moon-outline');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check LocalStorage & Init Page Transition
+        window.addEventListener('DOMContentLoaded', () => {
+            // Apply theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+                document.querySelector('.theme-toggle ion-icon').setAttribute('name', 'sunny-outline');
+            }
+
+            // Trigger Entry Animation
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        });
+
+        // Handle Exit Animation for Links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+
+                e.preventDefault();
+                document.body.classList.remove('loaded'); // Trigger Fade Out
+
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 600); // Wait for transition
+            });
+        });
+
+        // Scroll Animation Logic
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            // Move background slowly
+            document.body.style.setProperty('--scroll-offset', `${scrolled * 0.2}px`);
+        });
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('ion-icon');
+            if (navLinks.classList.contains('active')) {
+                icon.setAttribute('name', 'close-outline');
+            } else {
+                icon.setAttribute('name', 'menu-outline');
+            }
+        });
+
+        // --- WORKS MODAL LOGIC ---
+        const worksModal = document.getElementById('worksModal');
+        const worksTitle = document.getElementById('works-title');
+        const worksGallery = document.getElementById('works-gallery');
+
+        // Built-in fallback images remain visible until an admin uploads replacements.
+        const productWorks = {
+            'id-cards': [
+                'https://images.unsplash.com/photo-1589315488583-b91c0e352fdd?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1517482436815-5c1cf98fdf87?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1559056636-f09c6cdb94cc?w=600&h=400&fit=crop'
+            ],
+            'belts-ties': [
+                'https://images.unsplash.com/photo-1558223611-665e7178c1ab?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1579758682665-512c1b48b64b?w=600&h=400&fit=crop'
+            ],
+            'default': [
+                'https://images.unsplash.com/photo-1621360841013-c76831f1ff45?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1579973549221-5c3162b71933?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1585863920703-e8ee59b02221?w=600&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&h=400&fit=crop'
+            ]
+        };
+        let catalogImageOverrides = {};
+
+        async function loadCatalogImageOverrides() {
+            try {
+                const response = await fetch('/api/catalog');
+                if (!response.ok) return;
+                const result = await response.json();
+                if (result.success && result.catalog) {
+                    catalogImageOverrides = result.catalog;
+                }
+            } catch (err) {
+                console.warn('Using built-in catalog images because catalog overrides could not be loaded.', err);
+            }
+        }
+
+        function openWorksModal(productKey, productName) {
+            worksTitle.textContent = productName;
+
+            // Generate gallery HTML
+            let works = catalogImageOverrides[productKey] || productWorks[productKey] || productWorks['default'];
+            worksGallery.innerHTML = works.map(url => `
+                <div class="work-item">
+                    <img src="${url}" alt="${productName} work">
+                </div>
+            `).join('');
+
+            worksModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeWorksModal() {
+            worksModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Add click events to product items
+        document.querySelectorAll('.product-item').forEach(item => {
+            item.style.cursor = 'pointer'; // Show pointer on hover
+            item.addEventListener('click', () => {
+                const productName = item.querySelector('.product-name').textContent.trim();
+                openWorksModal(item.dataset.catalogKey, productName);
+            });
+        });
+
+        loadCatalogImageOverrides();
+
+        // Close modal when clicking outside
+        worksModal.addEventListener('click', (e) => {
+            if (e.target === worksModal) {
+                closeWorksModal();
+            }
+        });
+
+        // Navbar scroll effect - HANDLED BY CSS NOW
+        /*
+           We have moved to a persistent floating navbar design.
+           No JS needed to toggle classes for transparency/shadow
+           as the glass effect is permanent.
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Satish Ad Agency</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://con.satishadagency.in/app.html">
+    <meta property="og:title" content="Student Portal | Satish Ad Agency">
+    <meta property="og:url" content="https://con.satishadagency.in/app.html">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="styles.css?v=catalog-fast-20260601">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        .hidden {
+            display: none !important;
+        }
+        /* Featured catalog item highlight */
+        .catalog-featured-item {
+            border: 2px solid var(--primary) !important;
+            background: linear-gradient(135deg, rgba(37,99,235,0.07) 0%, rgba(124,58,237,0.07) 100%) !important;
+            position: relative;
+        }
+        .catalog-featured-badge {
+            position: absolute;
+            top: -11px;
+            right: 14px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        .catalog-admin-item {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <ion-icon name="prism" style="color: var(--primary);"></ion-icon>
+                Satish Ad Agency
+            </a>
+            <div class="mobile-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="app.html" class="nav-link" style="color: var(--primary);">Student Portal</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="user-info" style="font-weight: 600; color: var(--secondary); display:none;"></li>
+                <li><button id="logout-btn" class="btn btn-outline hidden" onclick="logout()"
+                        style="padding: 0.5rem 1.5rem;">Logout</button></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()"><ion-icon
+                            name="moon-outline"></ion-icon></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- App Dashboard -->
+    <section class="dashboard-container">
+        <div class="blob"></div>
+        <div class="container">
+
+            <!-- 1. LOGIN SCREEN -->
+            <div id="login-section" class="login-screen">
+
+                <!-- Role Selection -->
+                <div id="role-selection" class="role-cards">
+                    <div class="role-card" onclick="showLoginForm('student')">
+                        <ion-icon name="school-outline"></ion-icon>
+                        <h3>Student</h3>
+                        <p style="color: var(--text-light); margin-top: 0.5rem;">View and edit your own profile.</p>
+                    </div>
+                    <div class="role-card" onclick="showLoginForm('staff')">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <h3>School Staff</h3>
+                        <p style="color: var(--text-light); margin-top: 0.5rem;">Access full student database.</p>
+                    </div>
+                    <div class="role-card" onclick="showLoginForm('admin')">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon>
+                        <h3>Satish (Admin)</h3>
+                        <p style="color: var(--text-light); margin-top: 0.5rem;">Data processing and full control.</p>
+                    </div>
+                </div>
+
+                <!-- Student Login Form -->
+                <div id="student-login" class="login-form-container">
+                    <button class="back-btn" onclick="showRoleSelection()"><ion-icon
+                            name="arrow-back-outline"></ion-icon> Back</button>
+                    <h2 style="margin-bottom: 1.5rem;">Student Login</h2>
+                    <form onsubmit="handleLogin(event, 'student')">
+                        <div class="student-access-grid">
+                            <div class="form-group student-access-wide">
+                                <label for="student-school-input">School</label>
+                                <input type="text" id="student-school-input" placeholder="Enter school name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-class-input">Class</label>
+                                <input type="text" id="student-class-input" placeholder="e.g. 10">
+                            </div>
+                            <div class="form-group">
+                                <label for="student-section-input">Section</label>
+                                <input type="text" id="student-section-input" placeholder="e.g. A">
+                            </div>
+                            <div class="form-group">
+                                <label for="student-roll-input">Roll Number</label>
+                                <input type="text" id="student-roll-input" placeholder="e.g. 15">
+                            </div>
+                            <div class="form-group">
+                                <label for="student-photo-id-input">Photo ID</label>
+                                <input type="text" id="student-photo-id-input" placeholder="e.g. IMG-001">
+                            </div>
+                        </div>
+                        <p style="color: var(--text-light); margin: 0 0 1rem;">Enter the details you know. If school data is missing, the portal will use the remaining details.</p>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Access Profile</button>
+                    </form>
+                </div>
+
+                <!-- Staff Login Form -->
+                <div id="staff-login" class="login-form-container">
+                    <button class="back-btn" onclick="showRoleSelection()"><ion-icon
+                            name="arrow-back-outline"></ion-icon> Back</button>
+                    <h2 style="margin-bottom: 1.5rem;">Staff Access</h2>
+                    <form onsubmit="handleLogin(event, 'staff')">
+                        <div class="form-group">
+                            <label>Enter Access Code</label>
+                            <input type="password" id="staff-code-input" placeholder="Enter Code" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Verify Code</button>
+                    </form>
+                </div>
+
+                <!-- Admin Login Form -->
+                <div id="admin-login" class="login-form-container">
+                    <button class="back-btn" onclick="showRoleSelection()"><ion-icon
+                            name="arrow-back-outline"></ion-icon> Back</button>
+                    <h2 style="margin-bottom: 1.5rem;">Admin Login</h2>
+                    <form onsubmit="handleLogin(event, 'admin')">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="admin-user-input" placeholder="satish" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="admin-pass-input" placeholder="******" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- 2. MAIN DASHBOARD CONTENT (Hidden by default) -->
+            <div id="dashboard-content" class="hidden">
+
+                <!-- Admin Tools Section -->
+                <div id="admin-tools" class="hidden" data-admin-only style="margin-bottom: 4rem;">
+                    <div class="section-header"
+                        style="text-align: left; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h2 class="text-gradient">Satish Upload Console</h2>
+                            <p>Upload the student Excel sheet, individual photos, and ID card frame in one place.</p>
+                            <button class="btn btn-outline" style="padding: 0.5rem 1rem; margin-top: 0.75rem;"
+                                onclick="openCatalogModal()">
+                                <ion-icon name="images-outline" style="margin-right: 0.35rem;"></ion-icon>
+                                Edit Catalog
+                            </button>
+                        </div>
+                        <div
+                            style="background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--text-light); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                            <label style="font-weight: 600; color: var(--text);">School:</label>
+                            <select id="project-selector" onchange="switchProject(this.value)"
+                                style="padding: 0.5rem; border-radius: 4px; border: 1px solid var(--text-light); background: var(--background); color: var(--text);">
+                                <!-- Populated dynamically -->
+                            </select>
+                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;" onclick="createNewProject()">+
+                                Add New</button>
+                            <button class="btn btn-outline"
+                                style="padding: 0.5rem; border-color: #ef4444; color: #ef4444; display: flex; align-items: center; justify-content: center;"
+                                title="Delete School" onclick="deleteProject()">
+                                <ion-icon name="trash-outline" style="font-size: 1.2rem;"></ion-icon>
+                            </button>
+                            <span id="access-code-display"
+                                style="font-size: 0.875rem; color: var(--text); font-weight: 600;"></span>
+                            <button id="copy-access-code-btn" class="btn btn-outline" style="padding: 0.5rem 1rem;" onclick="copyAccessCode()">
+                                <ion-icon name="copy-outline" style="margin-right: 0.35rem;"></ion-icon>
+                                Copy Code
+                            </button>
+                            <button id="regenerate-access-code-btn" class="btn btn-outline" style="padding: 0.5rem 1rem;" onclick="regenerateAccessCode()">
+                                <ion-icon name="refresh-outline" style="margin-right: 0.35rem;"></ion-icon>
+                                Regenerate
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <!-- Excel Upload -->
+                        <div class="upload-zone" onclick="document.getElementById('excel-input').click()">
+                            <input type="file" id="excel-input" hidden accept=".xlsx">
+                            <ion-icon name="document-text-outline" class="upload-icon"></ion-icon>
+                            <h3>Upload Student Excel</h3>
+                            <p style="color: var(--text-light); margin-top: 0.5rem;">Accepts ID/Photo/Pic, Name, Address, Phone, Parents, DOB, Class & Section, and Blood Group.</p>
+                            <p id="excel-status" style="margin-top: 1rem; font-weight: 600; color: var(--primary);"></p>
+                        </div>
+
+                        <!-- Multiple Photos Upload -->
+                        <div class="upload-zone" onclick="document.getElementById('photo-input').click()">
+                            <input type="file" id="photo-input" hidden accept="image/*" multiple>
+                            <ion-icon name="images-outline" class="upload-icon"></ion-icon>
+                            <h3>Upload Individual Photos</h3>
+                            <p style="color: var(--text-light); margin-top: 0.5rem;">Select all photos. Filenames should
+                                match Excel photo IDs (e.g. IMG-001.jpg).</p>
+                            <p id="photo-status" style="margin-top: 1rem; font-weight: 600; color: var(--primary);"></p>
+                        </div>
+
+                        <!-- ID Card Frame Upload -->
+                        <div class="upload-zone" onclick="document.getElementById('frame-input').click()">
+                            <input type="file" id="frame-input" hidden accept="image/*">
+                            <ion-icon name="id-card-outline" class="upload-icon"></ion-icon>
+                            <h3>Upload ID Card Frame</h3>
+                            <p style="color: var(--text-light); margin-top: 0.5rem;">Blank ID card design (JPG/PNG).</p>
+                            <p id="frame-status" style="margin-top: 1rem; font-weight: 600; color: var(--primary);"></p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="processData()">
+                            <ion-icon name="cog-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            Auto-Match & Sort Data
+                        </button>
+                        <button class="btn btn-outline" onclick="openDesignerModal()">
+                            <ion-icon name="color-wand-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            Design ID Cards
+                        </button>
+                        <button id="save-frame-btn" class="btn btn-outline" onclick="saveFrameToServer()" style="border-color: var(--primary); color: var(--primary);">
+                            <ion-icon name="save-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            Save Frame to Server
+                        </button>
+                        <button class="btn btn-outline" onclick="viewIdCardFrame()" style="border-color: var(--secondary); color: var(--secondary);">
+                            <ion-icon name="eye-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            View ID Card Frame
+                        </button>
+                        <button class="btn btn-secondary" onclick="downloadFinal()">
+                            <ion-icon name="download-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            Download Master PDF
+                        </button>
+                        <button class="btn btn-primary" style="background: var(--accent); border-color: var(--accent);"
+                            onclick="downloadIdCards()">
+                            <ion-icon name="print-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            Download ID Cards
+                        </button>
+                    </div>
+                    <div id="upload-report" class="hidden" style="margin-top: 1rem;"></div>
+
+                    <div id="contact-messages-panel" class="hidden" style="margin-top: 3rem;">
+                        <div class="section-header" style="text-align: left; margin-bottom: 1rem;">
+                            <h3>Contact Messages</h3>
+                            <p>Latest website enquiries stored from the contact page.</p>
+                        </div>
+                        <button class="btn btn-outline" style="margin-bottom: 1rem;" onclick="loadContactMessages()">
+                            <ion-icon name="mail-open-outline" style="margin-right: 0.5rem;"></ion-icon>
+                            Refresh Messages
+                        </button>
+                        <div style="overflow-x: auto;">
+                            <table class="student-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Message</th>
+                                        <th>Received</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contact-messages-body">
+                                    <tr><td colspan="5" style="text-align:center;">No messages loaded.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 4rem; border: 0; border-top: 1px solid #cbd5e1;">
+                </div>
+
+                <!-- Database View (Shared by Satish & Staff, Limited for Student) -->
+                <div id="database-view">
+                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                        <h2 id="db-title">Student Records</h2>
+                        <p id="db-desc">View and manage student details.</p>
+                        <p id="staff-school-display" class="hidden"></p>
+                    </div>
+
+                    <!-- Student Correction Notes Panel (Staff only, shown ABOVE search bar) -->
+                    <div id="correction-notes-panel" class="hidden" style="margin-bottom: 2rem; border: 1px solid var(--primary); border-radius: 12px; padding: 1.5rem; background: linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(124,58,237,0.05) 100%)">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div>
+                                <h3 style="margin:0; color: var(--primary);">📝 Student Correction Requests</h3>
+                                <p style="margin: 0.25rem 0 0; color: var(--text-light); font-size: 0.9rem;">Students who submitted a message or correction request.</p>
+                            </div>
+                            <button class="btn btn-outline" onclick="loadCorrectionNotes()" style="padding: 0.4rem 0.85rem; flex-shrink: 0;">
+                                <ion-icon name="refresh-outline" style="margin-right: 0.35rem;"></ion-icon>
+                                Refresh
+                            </button>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="student-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Name</th>
+                                        <th>Class / Section</th>
+                                        <th>Message / Correction Note</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="correction-notes-body">
+                                    <tr><td colspan="5" style="text-align:center;">No correction notes yet.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div id="search-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; align-items: center;">
+                        <input type="text" id="search-input" onkeyup="filterTable()"
+                            placeholder="Search by name, ID or class..."
+                            style="padding: 1rem; flex: 1 1 260px; border: 1px solid #cbd5e1; border-radius: 8px;">
+                        <button class="btn btn-primary" onclick="filterTable()">Search</button>
+                        <label id="include-archived-wrapper"
+                            style="display: flex; align-items: center; gap: 0.5rem; color: var(--text); font-weight: 600;">
+                            <input type="checkbox" id="include-archived" onchange="toggleArchivedFilter(this.checked)">
+                            Archived
+                        </label>
+                        <select id="page-size-select" onchange="changePageSize(this.value)"
+                            style="padding: 0.85rem; border-radius: 8px; border: 1px solid #cbd5e1; background: var(--background); color: var(--text);">
+                            <option value="25">25 / page</option>
+                            <option value="50" selected>50 / page</option>
+                            <option value="100">100 / page</option>
+                            <option value="250">250 / page</option>
+                        </select>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="student-table" id="main-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="id" onclick="setSort('id')">ID <span class="sort-indicator"></span></th>
+                                    <th data-sort="roll_number" onclick="setSort('roll_number')">Roll No <span class="sort-indicator"></span></th>
+                                    <th data-sort="photo" onclick="setSort('photo')">Photo <span class="sort-indicator"></span></th>
+                                    <th data-sort="name" onclick="setSort('name')">Name <span class="sort-indicator"></span></th>
+                                    <th data-sort="class" onclick="setSort('class')">Class <span class="sort-indicator"></span></th>
+                                    <th data-sort="section" onclick="setSort('section')">Section <span class="sort-indicator"></span></th>
+                                    <th data-sort="father_name" onclick="setSort('father_name')">F. Name <span class="sort-indicator"></span></th>
+                                    <th data-sort="mother_name" onclick="setSort('mother_name')">M. Name <span class="sort-indicator"></span></th>
+                                    <th data-sort="dob" onclick="setSort('dob')">DOB <span class="sort-indicator"></span></th>
+                                    <th data-sort="blood_group" onclick="setSort('blood_group')">Blood <span class="sort-indicator"></span></th>
+                                    <th data-sort="contact" onclick="setSort('contact')">Contact <span class="sort-indicator"></span></th>
+                                    <th data-sort="address" onclick="setSort('address')">Address <span class="sort-indicator"></span></th>
+                                    <th data-sort="status" onclick="setSort('status')">Status <span class="sort-indicator"></span></th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Populated by app.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pagination-controls"
+                        style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <button class="btn btn-outline" id="prev-page-btn" onclick="changePage(-1)">Previous</button>
+                        <span id="pagination-summary" style="color: var(--text); font-weight: 600;">Page 1</span>
+                        <button class="btn btn-outline" id="next-page-btn" onclick="changePage(1)">Next</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Admin Catalog Editor Modal -->
+    <div class="edit-modal" id="catalogModal" data-admin-only>
+        <div class="modal-content" style="max-width: 1000px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                    <h3>Edit Catalog</h3>
+                    <p style="color: var(--text-light); margin-top: 0.35rem;">Choose a service, then upload its four public gallery images.</p>
+                </div>
+                <ion-icon name="close-outline" style="font-size: 1.5rem; cursor: pointer;"
+                    onclick="closeCatalogModal()"></ion-icon>
+            </div>
+            <div id="catalog-items-list" class="catalog-items-grid"></div>
+            <div id="catalog-item-editor" class="catalog-item-editor hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                    <div>
+                        <h3 id="catalog-editor-title">Edit Service Images</h3>
+                        <p style="color: var(--text-light);">Select 4 to 6 image files. They will be optimized before saving.</p>
+                    </div>
+                    <label for="catalog-image-input" class="btn btn-outline" style="cursor: pointer;">
+                        Select 4–6 Images
+                    </label>
+                    <input type="file" id="catalog-image-input" hidden accept="image/*" multiple
+                        onchange="previewCatalogImages(event)">
+                </div>
+                <div id="catalog-image-preview" class="catalog-image-preview"></div>
+                <button id="catalog-save-btn" class="btn btn-primary" style="margin-top: 1rem;" onclick="saveCatalogImages()">
+                    Save Gallery Images
+                </button>
+                <p id="catalog-save-status" style="margin-top: 0.75rem; color: var(--text-light); font-weight: 600;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ID Card Designer Modal -->
+    <div class="edit-modal" id="designerModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3>ID Card Designer</h3>
+                <ion-icon name="close-outline" style="font-size: 1.5rem; cursor: pointer;"
+                    onclick="closeDesignerModal()"></ion-icon>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <!-- Preview Canvas -->
+                <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #f8fafc; display: flex; align-items: center; justify-content: center; min-height: 400px; position: relative;"
+                    id="preview-container">
+                    <p id="no-frame-text" style="color: var(--text-light);">No Frame Uploaded</p>
+                    <canvas id="designer-canvas" style="display: none; max-width: 100%; height: auto;"></canvas>
+                </div>
+
+                <!-- Controls -->
+                <div style="max-height: 400px; overflow-y: auto; padding-right: 1rem;" id="designer-fields">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="edit-modal" id="editModal">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3>Edit Student Details</h3>
+                <ion-icon name="close-outline" style="font-size: 1.5rem; cursor: pointer;"
+                    onclick="closeModal()"></ion-icon>
+            </div>
+            <div
+                style="text-align: center; margin-bottom: 1.5rem; position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
+                <img id="edit-photo-preview" src=""
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; background: #ddd; border: 3px solid var(--primary);">
+                <div class="hidden" id="edit-photo-controls" style="margin-top: 0.5rem;">
+                    <label for="edit-photo-upload" class="btn btn-outline"
+                        style="padding: 0.25rem 0.5rem; font-size: 0.8rem; cursor: pointer;">Change Photo</label>
+                    <input type="file" id="edit-photo-upload" hidden accept="image/*"
+                        onchange="previewEditPhoto(event)">
+                </div>
+            </div>
+            <form onsubmit="saveChanges(event)">
+                <div class="form-group">
+                    <label>Full Name / Roll No</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" id="edit-name" placeholder="Name" value="" style="flex: 2;" required>
+                        <input type="text" id="edit-roll" placeholder="Roll No" value="" style="flex: 1;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Class & Section</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" id="edit-class" placeholder="Class" value="">
+                        <input type="text" id="edit-section" placeholder="Section" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Parents Name</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" id="edit-father" placeholder="Father's Name" value="">
+                        <input type="text" id="edit-mother" placeholder="Mother's Name" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Parent Contact</label>
+                    <input type="text" id="edit-contact" value="">
+                </div>
+                <div class="form-group">
+                    <label>Other Details</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="date" id="edit-dob" title="Date of Birth" style="flex: 1;">
+                        <input type="text" id="edit-blood" placeholder="Blood Group (e.g. O+)" value=""
+                            style="flex: 1;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="edit-address" value="">
+                </div>
+                <!-- Only Admin/Staff can change status -->
+                <div class="form-group hidden" id="status-group">
+                    <label>Status</label>
+                    <select id="edit-status"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px;">
+                        <option value="verified">Verified</option>
+                        <option value="pending">Pending</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Correction Note</label>
+                    <input type="text" id="edit-correction-note" placeholder="Describe spelling mistake or issue...">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 Satish Ad Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Secure Frontend Routing and REST sync -->
+    <script src="app.js?v=fix-20260626"></script>
+</body>
+
+</html>

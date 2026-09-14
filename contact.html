@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Satish Ad Agency</title>
+    <meta name="description" content="Contact Satish Ad Agency for school supplies, ID cards, printing, and student portal support.">
+    <link rel="canonical" href="https://con.satishadagency.in/contact.html">
+    <meta property="og:title" content="Contact Us | Satish Ad Agency">
+    <meta property="og:description" content="Get in touch with Satish Ad Agency for school products and services.">
+    <meta property="og:url" content="https://con.satishadagency.in/contact.html">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <ion-icon name="prism" style="color: var(--primary);"></ion-icon>
+                Satish Ad Agency
+            </a>
+            <div class="mobile-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="app.html" class="nav-link">Student Portal</a></li>
+                <li><a href="contact.html" class="nav-link" style="color: var(--primary);">Contact</a></li>
+                <li><a href="app.html" class="btn btn-primary">Login</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()"><ion-icon
+                            name="moon-outline"></ion-icon></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section-padding" style="padding-top: 8rem; background: transparent;">
+        <div class="blob"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions about our services or the student portal? We're here to help.</p>
+            </div>
+
+            <div class="contact-grid"
+                style="max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+
+                <div class="contact-info" style="padding: 2rem; border-radius: 12px;">
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Office Address</h3>
+                        <p style="color: var(--text-light);">Satish Ad Agency HQ<br>123 Creative Street, Business
+                            District<br>New Delhi, India 110001</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Contact Details</h3>
+                        <p style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <ion-icon name="call-outline" style="color: var(--primary);"></ion-icon> +91 98765 43210
+                        </p>
+                        <p style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <ion-icon name="mail-outline" style="color: var(--primary);"></ion-icon>
+                            <a href="mailto:info@con.satishadagency.in">info@con.satishadagency.in</a>
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Working Hours</h3>
+                        <p style="color: var(--text-light);">Monday - Saturday<br>9:00 AM - 7:00 PM</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="contact-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="contact-email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea
+                            id="contact-message"
+                            style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 120px;"
+                            placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <p id="contact-status" style="min-height: 1.5rem; color: var(--primary); font-weight: 600;"></p>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 Satish Ad Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-toggle ion-icon');
+
+            if (body.classList.contains('dark')) {
+                icon.setAttribute('name', 'sunny-outline');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.setAttribute('name', 'moon-outline');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check LocalStorage & Init Page Transition
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+                document.querySelector('.theme-toggle ion-icon').setAttribute('name', 'sunny-outline');
+            }
+            // Trigger Entry Animation
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        });
+
+        // Handle Exit Animation for Links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+
+                e.preventDefault();
+                document.body.classList.remove('loaded');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 600);
+            });
+        });
+
+        // Scroll Animation Logic
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            // Move background slowly
+            document.body.style.setProperty('--scroll-offset', `${scrolled * 0.2}px`);
+        });
+
+        async function submitContactForm(event) {
+            event.preventDefault();
+            const status = document.getElementById('contact-status');
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            status.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: document.getElementById('contact-name').value.trim(),
+                        email: document.getElementById('contact-email').value.trim(),
+                        message: document.getElementById('contact-message').value.trim()
+                    })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || 'Could not send message.');
+                status.textContent = 'Message sent successfully.';
+                event.target.reset();
+            } catch (error) {
+                status.textContent = error.message || 'Could not send message.';
+            } finally {
+                submitButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
