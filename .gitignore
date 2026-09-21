@@ -1,7 +1,7 @@
 # Environment secrets
 .env
 .env.example
-
+#env
 
 # Runtime uploads
 uploads/
