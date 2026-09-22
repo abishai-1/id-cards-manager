@@ -14,6 +14,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.utils import secure_filename
 
 # Load Environment Variables
+# .env
 load_dotenv()
 
 app = Flask(__name__)
